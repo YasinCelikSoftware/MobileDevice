@@ -27,7 +27,7 @@ public class MobileDeviceController {
 		return this.mobileDeviceService.add(mobileDevice);
 
 	}
-	@GetMapping(params = {"page", "size"})
+	@GetMapping(params = {"page"})
 	public DataResult<List<MobileDevice>> getAll(@RequestParam("page") int pageNumber, @RequestParam(defaultValue = "5", required = false) int size, 
 														@RequestParam(required = false) String brand, @RequestParam(required = false) String osVersion) {
 		if(brand == null)
