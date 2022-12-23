@@ -31,11 +31,11 @@ public class MobileDeviceController {
 	public DataResult<List<MobileDevice>> getAll(@RequestParam("page") int pageNumber, @RequestParam(defaultValue = "5", required = false) int size, 
 														@RequestParam(required = false) String brand, @RequestParam(required = false) String osVersion) {
 		if(brand == null)
-			return this.mobileDeviceService.getAll(pageNumber, size);
+			return this.mobileDeviceService.getAll(pageNumber-1, size);
 		else if(osVersion == null)
-			return this.mobileDeviceService.getByBrandContaining(brand, pageNumber, size);
+			return this.mobileDeviceService.getByBrandContaining(brand, pageNumber-1, size);
 		else
-			return this.mobileDeviceService.getByBrandAndOsVersion(brand, osVersion, pageNumber, size);
+			return this.mobileDeviceService.getByBrandAndOsVersion(brand, osVersion, pageNumber-1, size);
 	}
 	
 	
