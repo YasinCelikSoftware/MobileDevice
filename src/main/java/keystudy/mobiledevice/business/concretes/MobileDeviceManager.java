@@ -39,11 +39,13 @@ public class MobileDeviceManager implements MobileDeviceService {
 															|| isNullorEmpty(mobileDevice.getOs()) || isNullorEmpty(mobileDevice.getOsVersion())) {
 					
 					return new ErrorResult("This device has an null or empty value.");
-					
-					
-				} else {
-				mobileDeviceDao.save(mobileDevice);
-				return new SuccessResult("Mobile device saved. Device ID is : " + mobileDevice.getId());
+
+				}
+				else if (mobileDevice.getOs().equals("Android") || mobileDevice.getOs().equals("ios")){
+					mobileDeviceDao.save(mobileDevice);
+					return new SuccessResult("Mobile device saved. Device ID is : " + mobileDevice.getId());
+				}else {
+					return new ErrorResult("Mobile device os is not Android or ios.");
 				}	
 			} else {
 				
@@ -61,10 +63,10 @@ public class MobileDeviceManager implements MobileDeviceService {
 	private boolean isNullorEmpty(String input){
 
 		return input == null || input.trim().isEmpty();
-		
-		
-		
+
 	}
+
+
 
 	@Override
 	public DataResult<List<MobileDevice>> getAll(int pageNumber, int pageSize) {
